@@ -1,0 +1,55 @@
+﻿<Application x:Class="Live_Electrochem.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Live_Electrochem"
+             xmlns:HelperConverters="clr-namespace:Helper.Converters;assembly=SNSHelper"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:oxy="http://oxyplot.org/wpf"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary >
+            <HelperConverters:InverseBoolConverter x:Key="InverseBoolConverter"></HelperConverters:InverseBoolConverter>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
+            <DataTemplate DataType="{x:Type local:AIChannel}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Fill="{Binding Stroke}" Width="10" VerticalAlignment="Stretch"></Rectangle>
+                    <TextBlock Text="{Binding ChannelNumber, StringFormat='#{0}'}" Margin="5,0,5,0"></TextBlock>
+                    <TextBlock Text="Active" Visibility="{Binding IsActive, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,5,0"></TextBlock>
+                    <TextBlock Text="Active" Visibility="{Binding IsDisabled, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,5,0"></TextBlock>
+                    <TextBlock Text="{Binding ScanCount, StringFormat='{}{0} scans'}" Margin="0,0,5,0"></TextBlock>
+                    <TextBlock Text="{Binding SampleCount, StringFormat='{}{0} samples'}" Margin="0,0,5,0"></TextBlock>
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type local:AOChannel}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding ChannelNumber, StringFormat='#{0}'}" Margin="0,0,5,0"></TextBlock>
+                    <TextBlock Text="{Binding SampleCount, StringFormat='{}{0} samples'}" Margin="0,0,5,0"></TextBlock>
+                </StackPanel>
+            </DataTemplate>
+            <x:Array Type="Color" x:Key="SeabornColors">
+                <Color>Black</Color>
+                <Color>Red</Color>
+                <Color>Blue</Color>
+                <Color>#4c72b0</Color>
+                <Color>#55a868</Color>
+                <Color>#c44e52</Color>
+                <Color>#8172b2</Color>
+                <Color>#ccb974</Color>
+                <Color>#64b5cd</Color>
+            </x:Array>
+
+            <ResourceDictionary.MergedDictionaries>
+                <md:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Pink" x:Name="bundledtheme"
+                             ColorAdjustment="{md:ColorAdjustment Colors=All}" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+                <ResourceDictionary>
+                    
+                    <!--<Style TargetType="oxy:PlotView">
+                        <Setter Property="De" Value="{StaticResource SeabornColors}"/>
+                    </Style>-->
+
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,93 @@
+﻿<Window x:Class="Live_Electrochem.AxisPropertiesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:MaterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Live_Electrochem"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesign.Brush.Background}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
+        Title="AxisPropertiesWindow" SizeToContent="WidthAndHeight">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Row="0" Header="Y Axis">
+            <!--<GroupBox.Resources>
+                --><!--<Style TargetType="Button"  BasedOn="{StaticResource {x:Type Button}}">
+                    <Setter Property="IsEnabled" Value="False"></Setter>
+                </Style>--><!--
+            </GroupBox.Resources>-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <!--<ColumnDefinition Width="0.7*"></ColumnDefinition>-->
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Minimum" Grid.Row="0"></TextBlock>
+                <TextBox Text="{Binding PlotModel.DataRectangle.Bottom}" Grid.Row="0" Grid.Column="1"
+                         IsEnabled="{Binding PlotModel.AutoScaleY, Converter={StaticResource InverseBoolConverter}}"></TextBox>
+                <Button Grid.Row="0" Grid.Column="2" Click="Reset_Click" Tag="YMinimum" Margin="2"
+                        IsEnabled="{Binding PlotModel.AutoScaleY, Converter={StaticResource InverseBoolConverter}}">Reset</Button>
+                <!--<Button Grid.Row="0" Grid.Column="3" Click="Reset_Click" Tag="YGlobalMinimum">Reset Global</Button>-->
+                <TextBlock Text="Maximum" Grid.Row="1"></TextBlock>
+                <TextBox Text="{Binding PlotModel.DataRectangle.Top}" Grid.Row="1" Grid.Column="1"
+                         IsEnabled="{Binding PlotModel.AutoScaleY, Converter={StaticResource InverseBoolConverter}}"></TextBox>
+                <Button Grid.Row="1" Grid.Column="2" Click="Reset_Click" Tag="YMaximum" Margin="1"
+                        IsEnabled="{Binding PlotModel.AutoScaleY, Converter={StaticResource InverseBoolConverter}}">Reset</Button>
+                <!--<Button Grid.Row="1" Grid.Column="3" Click="Reset_Click" Tag="YGlobalMaximum">Reset Global</Button>-->
+                <CheckBox IsChecked="{Binding PlotModel.AutoScaleY}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Right">Auto Scale Y axis</CheckBox>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="X Axis" Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <!--<ColumnDefinition Width="0.7*"></ColumnDefinition>-->
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Minimum" Grid.Row="0"></TextBlock>
+                <TextBox Text="{Binding PlotModel.DataRectangle.Left}" Grid.Row="0" Grid.Column="1"
+                         IsEnabled="{Binding PlotModel.AutoScaleX, Converter={StaticResource InverseBoolConverter}}"></TextBox>
+                <Button Grid.Row="0" Grid.Column="2" Click="Reset_Click" Tag="XMinimum" Margin="2"
+                        IsEnabled="{Binding PlotModel.AutoScaleX, Converter={StaticResource InverseBoolConverter}}">Reset</Button>
+                <!--<Button Grid.Row="0" Grid.Column="3" Click="Reset_Click" Tag="XGlobalMinimum">Reset Global</Button>-->
+                <TextBlock Text="Maximum" Grid.Row="1"></TextBlock>
+                <TextBox Text="{Binding PlotModel.DataRectangle.Right}" Grid.Row="1" Grid.Column="1"
+                         IsEnabled="{Binding PlotModel.AutoScaleX, Converter={StaticResource InverseBoolConverter}}"></TextBox>
+                <Button Grid.Row="1" Grid.Column="2" Click="Reset_Click" Tag="XMaximum" Margin="2"
+                        IsEnabled="{Binding PlotModel.AutoScaleX, Converter={StaticResource InverseBoolConverter}}">Reset</Button>
+                <!--<Button Grid.Row="1" Grid.Column="3" Click="Reset_Click" Tag="XGlobalMaximum">Reset Global</Button>-->
+                <CheckBox IsChecked="{Binding PlotModel.AutoScaleX}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Right">Auto Scale X axis</CheckBox>
+            </Grid>
+        </GroupBox>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="99">
+            <Button Click="Close_Click" Margin="5,2" IsCancel="True">Close</Button>
+            <Button Click="Accept_Click" Margin="5,2" IsDefault="True">Accept</Button>
+        </StackPanel>
+    </Grid>
+</Window>
