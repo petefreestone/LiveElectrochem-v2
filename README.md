@@ -35,7 +35,6 @@
 - OxyPlot
 - MaterialDesignThemes
 - Extended.Wpf.Toolkit
-- Custom LabVIEW `.vi` readers
 
 ---
 
